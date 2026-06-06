@@ -9,11 +9,11 @@ import { Edit2, Save, X, AlertTriangle } from 'lucide-react';
 // --- MOCK DATA SETUP ---
 const MOCK_DEVICES = ['device1', 'device2', 'device3', 'device4', 'device5'];
 const DEFAULT_NICKNAMES = {
-  device1: 'Location Alpha',
-  device2: 'Location Beta',
-  device3: 'Location Gamma',
-  device4: 'Location Delta',
-  device5: 'Location Epsilon'
+  device1: 'M1',
+  device2: 'M2',
+  device3: 'M3',
+  device4: 'F1',
+  device5: 'F2'
 };
 
 const generateMockData = () => {
