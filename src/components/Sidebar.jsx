@@ -1,9 +1,12 @@
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Activity, LogOut, Settings, Bell } from 'lucide-react';
 
 const Sidebar = () => {
   const { logout } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <div className="glass-panel" style={{ 
@@ -40,12 +43,13 @@ const Sidebar = () => {
           alignItems: 'center', 
           gap: '12px', 
           padding: '12px 16px', 
-          background: 'rgba(59, 130, 246, 0.1)',
-          color: 'var(--accent-blue)',
+          background: location.pathname === '/' ? 'rgba(59, 130, 246, 0.1)' : 'transparent',
+          color: location.pathname === '/' ? 'var(--accent-blue)' : 'var(--text-secondary)',
           borderRadius: '8px',
           fontWeight: '500',
-          cursor: 'pointer'
-        }}>
+          cursor: 'pointer',
+          transition: 'all 0.2s ease'
+        }} className={location.pathname !== '/' ? 'hover-item' : ''} onClick={() => navigate('/')}>
           <Activity size={20} />
           <span>Dashboard</span>
         </div>
@@ -55,12 +59,13 @@ const Sidebar = () => {
           alignItems: 'center', 
           gap: '12px', 
           padding: '12px 16px', 
-          color: 'var(--text-secondary)',
+          background: location.pathname === '/alerts' ? 'rgba(59, 130, 246, 0.1)' : 'transparent',
+          color: location.pathname === '/alerts' ? 'var(--accent-blue)' : 'var(--text-secondary)',
           borderRadius: '8px',
           fontWeight: '500',
           cursor: 'pointer',
           transition: 'all 0.2s ease'
-        }} className="hover-item">
+        }} className={location.pathname !== '/alerts' ? 'hover-item' : ''} onClick={() => navigate('/alerts')}>
           <Bell size={20} />
           <span>Alerts</span>
         </div>
